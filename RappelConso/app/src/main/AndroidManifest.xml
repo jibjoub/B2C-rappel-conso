@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rappelconso">
+    package="com.example.rappelconso"
+    >
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RappelConso">
         <activity
-            android:name="com.example.rappelconso.view.MainActivity"
+            android:name="view.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
