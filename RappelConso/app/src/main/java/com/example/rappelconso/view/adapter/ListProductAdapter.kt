@@ -6,12 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rappelconso.R
 import com.example.rappelconso.view.model.Product
 
-class ListProductAdapter(private val mList: List<Product>, val context: Context) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
+class ListProductAdapter(
+    private val mList: List<Product>,
+    val context: Context,
+    var listener: RecyclerViewClickListener
+) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +41,9 @@ class ListProductAdapter(private val mList: List<Product>, val context: Context)
             .into(holder.imageView)
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = product.referenceName
+        holder.referenceName.text = product.referenceName
+
+        holder.referenceId.text = product.referenceId
 
     }
 
@@ -46,8 +53,20 @@ class ListProductAdapter(private val mList: List<Product>, val context: Context)
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        val textView: TextView = itemView.findViewById(R.id.textView)
+    inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
+        init {
+            itemView.setOnClickListener(this)
+        }
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        val referenceName: TextView = itemView.findViewById(R.id.referenceName)
+        val referenceId: TextView = itemView.findViewById(R.id.referenceId)
+
+        override fun onClick(v: View?) {
+            listener.onClick(adapterPosition)
+        }
+    }
+
+    public interface RecyclerViewClickListener {
+        fun onClick(position: Int)
     }
 }

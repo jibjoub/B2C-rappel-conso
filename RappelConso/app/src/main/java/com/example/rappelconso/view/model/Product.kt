@@ -8,7 +8,7 @@ data class Product (
     var id: String,
 
     @SerializedName("datetime")
-    var date: LocalDateTime,
+    var date: String,
 
     @SerializedName("family_lvl1")
     var familyLvl1: String,
@@ -23,13 +23,13 @@ data class Product (
     var referenceName: String,
 
     @SerializedName("reference_id")
-    var referenceId: Int,
+    var referenceId: String,
 
     @SerializedName("recall_reason")
     var recallReason: String,
 
     @SerializedName("recall_criticality")
-    var recallCriticality: Int,
+    var recallCriticality: String,
 
     @SerializedName("risks")
     var risks: String,

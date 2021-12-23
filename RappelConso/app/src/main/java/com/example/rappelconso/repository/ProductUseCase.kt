@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rappelconso.view.model.Product
+import com.example.rappelconso.view.model.ProductList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -13,21 +14,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProductUseCase(private val productService: ProductService) {
-    val mLiveData = MutableLiveData<Data<List<Product>>>()
-    suspend fun getProducts() {
+    fun getProducts(mLiveData: MutableLiveData<Data<ProductList>>) {
         val products = productService.getProduct()
-        products?.enqueue(object : Callback<List<Product>>{
+        products?.enqueue(object : Callback<ProductList>{
             override fun onResponse(
-                call: retrofit2.Call<List<Product>>,
-                response: Response<List<Product>>
+                call: retrofit2.Call<ProductList>,
+                response: Response<ProductList>
             ) {
                 response.body()?.let {
                     mLiveData.postValue(Data.success(it, ""))
-                }?.let { mLiveData.postValue(Data.error(null, "body is null")) }
+                }
 
             }
 
-            override fun onFailure(call: retrofit2.Call<List<Product>>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<ProductList>, t: Throwable) {
                 mLiveData.postValue(Data.error(null, "an error has occurred"))
             }
         })
