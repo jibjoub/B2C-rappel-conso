@@ -2,6 +2,7 @@ package com.example.rappelconso.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.rappelconso.view.model.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,10 +12,10 @@ import okhttp3.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProductUseCase(val productService: ProductService) {
+class ProductUseCase(private val productService: ProductService) {
     val mLiveData = MutableLiveData<Data<List<Product>>>()
-    suspend fun getProducts(retailer: String) {
-        val products = productService.getProduct(retailer)
+    suspend fun getProducts() {
+        val products = productService.getProduct()
         products?.enqueue(object : Callback<List<Product>>{
             override fun onResponse(
                 call: retrofit2.Call<List<Product>>,
@@ -32,6 +33,10 @@ class ProductUseCase(val productService: ProductService) {
         })
 
     }
+
+//    suspend fun getAll(): String {
+//        return productService.getAll()
+//    }
 
 
 }

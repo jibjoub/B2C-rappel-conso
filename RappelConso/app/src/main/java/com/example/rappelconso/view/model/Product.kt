@@ -7,13 +7,13 @@ data class Product (
     @SerializedName("id")
     var id: String,
 
-    @SerializedName("date")
+    @SerializedName("datetime")
     var date: LocalDateTime,
 
-    @SerializedName("family_lvl_1")
+    @SerializedName("family_lvl1")
     var familyLvl1: String,
 
-    @SerializedName("family_lvl_2")
+    @SerializedName("family_lvl2")
     var familyLvl2: String,
 
     @SerializedName("brand_name")
@@ -28,13 +28,16 @@ data class Product (
     @SerializedName("recall_reason")
     var recallReason: String,
 
+    @SerializedName("recall_criticality")
+    var recallCriticality: Int,
+
     @SerializedName("risks")
     var risks: String,
 
-    @SerializedName("sanity_recommendation")
+    @SerializedName("sanity_recommandation")
     var sanityRecommendation: String,
 
-    @SerializedName("behavior_recommendation")
+    @SerializedName("behavior_recommandation")
     var behaviorRecommendation: String,
 
     @SerializedName("phone_number")

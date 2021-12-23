@@ -12,7 +12,7 @@ open class Module {
     val applicationModule = module {
 
         single{ Retrofit.Builder()
-            .baseUrl("https://rappelconso.herokuapp.com/api/v1")
+            .baseUrl("https://rappelconso.herokuapp.com/api/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         }
