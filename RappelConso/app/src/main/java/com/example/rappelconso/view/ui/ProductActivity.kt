@@ -11,7 +11,6 @@ class ProductActivity: AppCompatActivity() {
 
     private lateinit var binding: ProductDetailsBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ProductDetailsBinding.inflate(layoutInflater)
